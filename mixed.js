@@ -66,16 +66,34 @@ const devoMembers = {
 
 
 // define strins to hold the year each album was released
-const releaseYears = Object.keys(devoMusic);
-console.log(releaseYears);
+const years = Object.keys(devoMusic);
+const randomYear = years[Math.floor(Math.random()*years.length)];
+const randomAlbum = devoMusic[randomYear].album;
+let randomSong = "unknown";
+
+// define a function to call  in order to select a random single from the randomly chosen year
+const selectSong = album => {
+    const songList = Object.keys(devoMusic[randomYear].singles);
+    return songList[Math.floor(Math.random()*songList.length)];
+}
+randomSong = devoMusic[randomYear].singles[selectSong(devoMusic)];
 
 // define string to hold band members names
-const memberNames = Object.keys(devoMembers);
-console.log(memberNames);
+const members = Object.keys(devoMembers);
+const randomMember = members[Math.floor(Math.random()*members.length)];
+const randomInstrument = devoMembers[randomMember].instrument;
+const randomAge = devoMembers[randomMember].age;
 
-// create a function that will randomly select a year, album, and song
-const musicSelection = () => {
-    for (let i = 0; i < releaseYears.length; i++) {
-        
-    }
-}
+//random description generator
+const adverb = ['monumentus', 'exquisite', 'super-duper', 'fuzzy', 'jam-tastic', 'gnarly'];
+const randomAdverb = adverb[Math.floor(Math.random()*adverb.length)];
+const secondAdverb = adverb[Math.floor(Math.random()*adverb.length)];
+
+// random reaction generator
+const reaction = ['pissed their pants', 'blew chunks', 'cried tears of joy', 'lost all bowel control'];
+const randomReaction = reaction[Math.floor(Math.random()*reaction.length)];
+
+// print out paragraph with randomized facts about devo
+console.log(`In the year ${randomYear}, DEVO released their ${randomAdverb} album "${randomAlbum}". It was ${devoMusic[randomYear].length} of pure ${secondAdverb} bliss.`);
+console.log(`Once their song "${randomSong}" was unleashed onto the public, all who heard it ${randomReaction}.`);
+console.log(`In honor of ${randomMember}'s superb ${devoMembers[randomMember].instrument} playing style, ${devoMembers[randomMember].born} was unanimously declaired a national holiday.`)
